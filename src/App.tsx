@@ -4,11 +4,10 @@ import Leaderboard from "./pages/Leaderboard"
 import Login from "./pages/Login"
 import Play from "./pages/Play"
 import Register from "./pages/Register"
-import Navbar from "./pages/Navbar";
+import './App.css'
 export default function App() {
   return (
     <div>
-        <Navbar />
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/leaderboard" element={<Leaderboard />}/>
