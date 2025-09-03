@@ -4,7 +4,7 @@ import { Link } from "react-router";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<React.ReactNode>("");
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,8 +19,8 @@ export default function Login() {
       const data = await response.json();
       console.log(data)
       if (response.ok) {
-        setMessage("Login successful!");
-        <Link to="/Play">Go to Play</Link>
+        setMessage(<div><div>Login successful!</div><div><Link to="/Play">Go to Play</Link></div><Link to="/Leaderboard">Go to Leaderboard</Link></div>);
+    
         localStorage.setItem("token", data.token); 
       } else {
         setMessage("Login failed: " + (data.error || "Unknown error"));
@@ -42,7 +42,7 @@ export default function Login() {
 
           <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
           <div>
-            <button type="submit">Login</button>
+            <button type="submit">submit</button>
           </div>
         </form>
         {message}

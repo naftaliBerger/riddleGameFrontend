@@ -3,8 +3,7 @@ export default function Play() {
   return (
     <div>
       <div>
-        <Link to="/">Home</Link>--
-        <Link to="/Leaderboard">Leaderboard</Link>
+        <Link to="/">Home</Link>
       </div>
       <h2>Play</h2>
     </div>

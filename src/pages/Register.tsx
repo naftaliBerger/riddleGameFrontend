@@ -3,7 +3,7 @@ import { Link } from "react-router"
 export default function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<React.ReactNode>("");
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); 
@@ -16,7 +16,7 @@ export default function Register() {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage("Registration successful! You can now log in.");
+        setMessage(<div>Registration successful! <Link to="/Login">Go to login</Link></div>);
       } else {
         setMessage("Registration failed: " + (data.error || "Unknown error"));
       }
@@ -38,7 +38,7 @@ export default function Register() {
       
         <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
         <div>
-            <button type="submit">Register</button>
+            <button type="submit">submit</button>
         </div>
       </form>
       {message}
