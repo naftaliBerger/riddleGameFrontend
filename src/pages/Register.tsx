@@ -18,11 +18,11 @@ export default function Register() {
       if (response.ok) {
         setMessage(<div>Registration successful! <Link to="/Login">Go to login</Link></div>);
       } else {
-        setMessage("Registration failed: " + (data.error || "Unknown error"));
+        setMessage((data.error));
       }
     } catch (err) {
       console.error(err);
-      setMessage("Network error");
+      setMessage("network error");
     }
   };
 
@@ -34,9 +34,9 @@ export default function Register() {
       </div>
       <h2>Register</h2>
       <form onSubmit={handleRegister}>
-        <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
+        <input type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
       
-        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+        <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
         <div>
             <button type="submit">submit</button>
         </div>

@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router";
-
+import { Link, useNavigate } from "react-router"; 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState<React.ReactNode>("");
+
+  const navigate = useNavigate(); 
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,17 +18,16 @@ export default function Login() {
       });
 
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       if (response.ok) {
-        setMessage(<div><div>Login successful!</div><div><Link to="/Play">Go to Play</Link></div><Link to="/Leaderboard">Go to Leaderboard</Link></div>);
-    
-        localStorage.setItem("token", data.token); 
+        localStorage.setItem("token", data.token);
+        navigate("/Play"); 
       } else {
-        setMessage("Login failed: " + (data.error || "Unknown error"));
+        setMessage(data.error);
       }
     } catch (err) {
       console.error(err);
-      setMessage("Network error");
+      setMessage("network error");
     }
   };
 
@@ -38,9 +38,10 @@ export default function Login() {
         <Link to="/Register">Register</Link>
         <h2>Login</h2>
         <form onSubmit={handleLogin}>
-          <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
+          <input type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
 
-          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+          <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        
           <div>
             <button type="submit">submit</button>
           </div>
